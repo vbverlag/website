@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herbert N. Strauss House — V&B Verlag</title>
+    <style>
+        @font-face {
+            font-family: 'Digital';
+            src: url('./Font/DIGITAL.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            color: White;
+        }
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Digital', monospace;
+            color: White;
+            background: Black;
+            text-align: center;
+            text-transform: uppercase;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            padding: 30px 0;
+        }
+
+        /* ── TOP BAR ── */
+        .publisher {
+            font-size: 12px;
+            color: White;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            padding: 0 20px;
+        }
+
+        /* ── TITLE ── */
+        h1 {
+            font-family: 'Digital', monospace;
+            font-size: 24px;
+            font-weight: normal;
+            color: White;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            padding: 0 20px;
+        }
+
+        /* ── GALLERY ── */
+        .gallery {
+            position: relative;
+            flex: 1;
+            min-height: 0;
+            max-width: 700px;
+            max-height: 55vh;
+            width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            touch-action: pan-y pinch-zoom;
+            cursor: grab;
+        }
+
+        .gallery:active {
+            cursor: grabbing;
+        }
+
+        .gallery-track {
+            display: flex;
+            transition: transform 0.3s ease;
+            height: 100%;
+        }
+
+        .gallery-track img {
+            flex: 0 0 100%;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .gallery-counter {
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: White;
+            padding: 15px 0;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            pointer-events: none;
+            padding: 0 10px;
+        }
+
+        .gallery-nav button {
+            background: none;
+            border: none;
+            font-family: 'Digital', monospace;
+            font-size: 20px;
+            padding: 10px;
+            cursor: pointer;
+            color: White;
+            pointer-events: auto;
+        }
+
+        .gallery-nav button:hover {
+            opacity: 0.5;
+        }
+
+        /* ── INFO (below gallery) ── */
+        .info {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .specs {
+            font-size: 10px;
+            color: White;
+            letter-spacing: 2px;
+            margin-bottom: 3px;
+            text-align: center;
+        }
+
+        .description {
+            font-size: 14px;
+            line-height: 2;
+            letter-spacing: 1px;
+            text-align: justify;
+        }
+
+        /* ── PREORDER ── */
+        .preorder {
+            padding: 0 20px;
+        }
+
+        .preorder h2 {
+            font-family: 'Digital', monospace;
+            font-size: 16px;
+            font-weight: normal;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 14px;
+            letter-spacing: 2px;
+            color: White;
+            margin-bottom: 30px;
+        }
+
+        .preorder-btn {
+            display: inline-block;
+            background: none;
+            color: White;
+            font-family: 'Digital', monospace;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            padding: 12px 40px;
+            text-decoration: none;
+            border: 1px solid White;
+            cursor: pointer;
+        }
+
+        .preorder-btn:hover {
+            background: White;
+            color: Black;
+        }
+
+        .shipping-note {
+            font-size: 11px;
+            color: #999;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            padding: 0 20px;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: White;
+        }
+
+        /* ── ABOUT OVERLAY ── */
+        .publisher-link {
+            color: White;
+            text-decoration: none;
+        }
+
+        .publisher-link:hover {
+            opacity: 0.5;
+        }
+
+        .about {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: Black;
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 40px;
+        }
+
+        .about p {
+            font-size: 14px;
+            letter-spacing: 2px;
+            line-height: 2;
+            max-width: 500px;
+        }
+
+        .about-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: none;
+            border: none;
+            color: White;
+            font-family: 'Digital', monospace;
+            font-size: 16px;
+            cursor: pointer;
+            letter-spacing: 2px;
+        }
+
+        .about-close:hover {
+            opacity: 0.5;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 600px) {
+            html, body {
+                height: auto;
+                overflow: auto;
+            }
+            body {
+                display: block;
+                padding: 40px 0;
+            }
+            .publisher {
+                padding: 0 20px 30px;
+            }
+            h1 {
+                font-size: 20px;
+                letter-spacing: 2px;
+                padding: 0 20px 30px;
+            }
+            .gallery {
+                height: auto;
+                flex: none;
+                max-width: 100%;
+                max-height: none;
+            }
+            .gallery-track {
+                height: auto;
+            }
+            .gallery-track img {
+                height: auto;
+            }
+            .preorder {
+                padding: 30px 20px;
+            }
+            .info {
+                padding: 10px 20px 30px;
+            }
+            .specs {
+                font-size: 12px;
+                margin-bottom: 10px;
+            }
+            footer {
+                padding: 20px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <p class="publisher"><a href="#about" class="publisher-link" onclick="document.getElementById('about').style.display = document.getElementById('about').style.display === 'flex' ? 'none' : 'flex'; return false;">V&amp;B Verlag</a></p>
+
+    <h1>Herbert N. Strauss House</h1>
+
+    <!-- GALLERY -->
+    <div class="gallery">
+        <div class="gallery-track">
+            <img src="./Images/01.png" alt="Herbert N. Strauss House">
+            <img src="./Images/02.png" alt="Herbert N. Strauss House">
+            <img src="./Images/03.png" alt="Herbert N. Strauss House">
+            <img src="./Images/04.png" alt="Herbert N. Strauss House">
+            <img src="./Images/05.png" alt="Herbert N. Strauss House">
+            <img src="./Images/06.png" alt="Herbert N. Strauss House">
+            <img src="./Images/07.png" alt="Herbert N. Strauss House">
+            <img src="./Images/08.png" alt="Herbert N. Strauss House">
+            <img src="./Images/09.png" alt="Herbert N. Strauss House">
+            <img src="./Images/10.png" alt="Herbert N. Strauss House">
+        </div>
+        <div class="gallery-nav">
+            <button onclick="prev()">←</button>
+            <button onclick="next()">→</button>
+        </div>
+    </div>
+
+    <!-- PREORDER -->
+    <section class="preorder">
+        <!-- Replace YOUR_STRIPE_PAYMENT_LINK with your Stripe Payment Link URL -->
+        <!-- Create one at: https://dashboard.stripe.com/payment-links -->
+        <a class="preorder-btn"
+           href="YOUR_STRIPE_PAYMENT_LINK"
+           target="_blank">
+            Pre-order — CHF 100
+        </a>
+    </section>
+
+    <!-- INFO -->
+    <div class="info">
+        <p class="specs">200 PP. — GLOSS PHOTO PAPER — LINEN HARDCOVER — PRINTED IN GERMANY</p>
+        <p class="specs">A PORTION OF PROCEEDS WILL BE DONATED TO A REGISTERED CHARITY SUPPORTING SURVIVORS OF SEXUAL ABUSE.</p>
+    </div>
+
+    <footer>© V&amp;B Verlag</footer>
+
+    <!-- ABOUT -->
+    <div class="about" id="about">
+        <button class="about-close" onclick="this.parentElement.style.display='none'">✕</button>
+        <p>V&amp;B VERLAG IS AN ART BOOK PRESS</p>
+    </div>
+
+    <script>
+        const track = document.querySelector('.gallery-track');
+        const total = 10;
+        let index = 0;
+
+        function goTo(i) {
+            index = Math.max(0, Math.min(i, total - 1));
+            track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        }
+
+        function next() { goTo(index + 1); }
+        function prev() { goTo(index - 1); }
+
+        // Touch swipe
+        let startX = 0;
+        let dragging = false;
+
+        track.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+            dragging = true;
+        });
+
+        track.addEventListener('touchend', function(e) {
+            if (!dragging) return;
+            dragging = false;
+            const diff = startX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) {
+                diff > 0 ? next() : prev();
+            }
+        });
+
+        // Mouse drag
+        let mouseStart = 0;
+        let mouseDragging = false;
+
+        track.addEventListener('mousedown', function(e) {
+            mouseStart = e.clientX;
+            mouseDragging = true;
+            e.preventDefault();
+        });
+
+        document.addEventListener('mouseup', function(e) {
+            if (!mouseDragging) return;
+            mouseDragging = false;
+            const diff = mouseStart - e.clientX;
+            if (Math.abs(diff) > 50) {
+                diff > 0 ? next() : prev();
+            }
+        });
+
+        // Arrow keys
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') next();
+            if (e.key === 'ArrowLeft') prev();
+        });
+    </script>
+
+</body>
+</html>
