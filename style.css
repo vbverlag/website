@@ -316,20 +316,20 @@ textarea.form-field {
 
 .gallery-nav button:hover { opacity: 1; }
 
-/* ── FOOTER (fixed) ── */
+/* ── FOOTER (fixed, body-shaped so its rule matches the header rule) ── */
 .site-footer {
     position: fixed;
     bottom: 0;
-    left: 0;
-    right: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 720px;
     background: var(--bg);
     padding: 0 32px;
     z-index: 10;
 }
 
 .site-footer-inner {
-    max-width: 720px;
-    margin: 0 auto;
     padding: 14px 0;
     border-top: 1px solid var(--ink);
     font-size: 10px;
