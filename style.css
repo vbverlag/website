@@ -154,7 +154,7 @@ ol, ul {
     font-weight: normal;
     letter-spacing: 0.04em;
     color: var(--ink);
-    margin-bottom: 36px;
+    margin-bottom: 32px;
 }
 
 /* ── SECTION LABEL (DESCRIPTION / PHYSICAL DESCRIPTION) ── */
@@ -169,7 +169,6 @@ ol, ul {
 /* ── DESCRIPTION (body / paragraph block) ── */
 .description {
     margin-bottom: 56px;
-    max-width: 560px;
 }
 
 .description-body {
@@ -181,7 +180,7 @@ ol, ul {
 }
 
 .description-body p {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
 }
 
 .description-body p:last-child {
@@ -190,7 +189,7 @@ ol, ul {
 
 /* ── PRE-ORDER ── */
 .preorder {
-    margin-bottom: 24px;
+    margin: 48px 0 80px;
     text-align: center;
 }
 
@@ -261,10 +260,8 @@ textarea.form-field {
 .gallery {
     position: relative;
     width: 100%;
-    height: 60vh;
-    min-height: 360px;
-    max-height: 560px;
-    margin: 0 0 16px;
+    aspect-ratio: 16 / 9;
+    margin: 0;
     overflow: hidden;
     touch-action: pan-y pinch-zoom;
     cursor: grab;
@@ -351,12 +348,7 @@ textarea.form-field {
     .toc-title, .toc-num {
         font-size: 12px;
     }
-    .gallery {
-        height: auto;
-        min-height: 0;
-        max-height: none;
-        aspect-ratio: 16 / 9;
-    }
     .description-body { font-size: 14px; }
+    .preorder { margin: 40px 0 64px; }
     .forthcoming-label { margin-top: 40px; }
 }
