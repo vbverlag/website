@@ -147,6 +147,10 @@ ol, ul {
     margin-bottom: 10px;
 }
 
+.toc-section .toc {
+    padding-left: 32px;
+}
+
 /* ── PAGE HEADING (sub-pages) ── */
 .page-heading {
     font-family: 'Digital', monospace;
