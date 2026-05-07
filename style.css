@@ -355,7 +355,7 @@ textarea.form-field {
         height: auto;
         min-height: 0;
         max-height: none;
-        aspect-ratio: 4 / 3;
+        aspect-ratio: 16 / 9;
     }
     .description-body { font-size: 14px; }
     .forthcoming-label { margin-top: 40px; }
