@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herbert N. Strauss House &mdash; V&amp;B Verlag</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <a href="./index.html" class="wordmark">V&amp;B Verlag</a>
+        <hr class="rule">
+    </header>
+
+    <main>
+        <h1 class="page-heading">Herbert N. Strauss House</h1>
+
+        <div class="gallery">
+            <div class="gallery-track">
+                <img src="./Images/01.png" alt="Herbert N. Strauss House">
+                <img src="./Images/02.png" alt="Herbert N. Strauss House">
+                <img src="./Images/03.png" alt="Herbert N. Strauss House">
+                <img src="./Images/04.png" alt="Herbert N. Strauss House">
+                <img src="./Images/05.png" alt="Herbert N. Strauss House">
+                <img src="./Images/06.png" alt="Herbert N. Strauss House">
+                <img src="./Images/07.png" alt="Herbert N. Strauss House">
+                <img src="./Images/08.png" alt="Herbert N. Strauss House">
+                <img src="./Images/09.png" alt="Herbert N. Strauss House">
+                <img src="./Images/10.png" alt="Herbert N. Strauss House">
+            </div>
+            <div class="gallery-nav">
+                <button onclick="prev()" aria-label="Previous">&larr;</button>
+                <button onclick="next()" aria-label="Next">&rarr;</button>
+            </div>
+        </div>
+        <section class="preorder">
+            <a class="btn"
+               href="https://buy.stripe.com/test_3cI4gB3R01MX9E34VO7g400"
+               target="_blank"
+               rel="noopener">
+                Pre-order &mdash; CHF 100
+            </a>
+        </section>
+
+        <div class="description">
+            <div class="section-label">Description</div>
+            <div class="description-body">
+                <p>[BOOK DESCRIPTION &mdash; paragraph one. Synopsis of the book: what it is, what it depicts, why it exists. Replace with real copy.]</p>
+                <p>[BOOK DESCRIPTION &mdash; paragraph two. Continue here, or remove this paragraph if a single block reads better.]</p>
+                <p>A portion of proceeds will be donated to a registered charity supporting survivors of sexual abuse.</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-inner">© <span id="year">2026</span> V&amp;B Verlag</div>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const track = document.querySelector('.gallery-track');
+        const total = 10;
+        let index = 0;
+
+        function goTo(i) {
+            index = Math.max(0, Math.min(i, total - 1));
+            track.style.transform = 'translateX(-' + (index * 100) + '%)';
+        }
+        function next() { goTo(index + 1); }
+        function prev() { goTo(index - 1); }
+
+        let startX = 0, dragging = false;
+        track.addEventListener('touchstart', e => {
+            startX = e.touches[0].clientX;
+            dragging = true;
+        });
+        track.addEventListener('touchend', e => {
+            if (!dragging) return;
+            dragging = false;
+            const diff = startX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+        });
+
+        let mouseStart = 0, mouseDragging = false;
+        track.addEventListener('mousedown', e => {
+            mouseStart = e.clientX;
+            mouseDragging = true;
+            e.preventDefault();
+        });
+        document.addEventListener('mouseup', e => {
+            if (!mouseDragging) return;
+            mouseDragging = false;
+            const diff = mouseStart - e.clientX;
+            if (Math.abs(diff) > 50) diff > 0 ? next() : prev();
+        });
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') next();
+            if (e.key === 'ArrowLeft') prev();
+        });
+    </script>
+
+</body>
+</html>

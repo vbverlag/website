@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact &mdash; V&amp;B Verlag</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <a href="./index.html" class="wordmark">V&amp;B Verlag</a>
+        <hr class="rule">
+    </header>
+
+    <main>
+        <h1 class="page-heading">Contact</h1>
+
+        <!--
+            FORM SETUP:
+            1. Sign up at https://formspree.io (free tier: 50 submissions/month)
+            2. Create a new form, copy the endpoint URL
+            3. Replace YOUR_FORMSPREE_ID below with the endpoint
+            Until then, submissions will not be delivered.
+        -->
+        <form class="contact-form"
+              action="https://formspree.io/f/YOUR_FORMSPREE_ID"
+              method="POST">
+            <input class="form-field" type="text" name="name"
+                   placeholder="Name" aria-label="Name" required>
+            <input class="form-field" type="email" name="email"
+                   placeholder="Email" aria-label="Email" required>
+            <textarea class="form-field" name="message"
+                      placeholder="Message" aria-label="Message"
+                      rows="6" required></textarea>
+            <div class="form-submit">
+                <button type="submit" class="btn">Send</button>
+            </div>
+        </form>
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-inner">© <span id="year">2026</span> V&amp;B Verlag</div>
+    </footer>
+
+    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>
