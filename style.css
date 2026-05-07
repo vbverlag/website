@@ -338,17 +338,27 @@ textarea.form-field {
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
     body {
-        padding: 28px 20px 40px;
+        padding: 24px 20px 80px;
     }
-    .site-header { margin-bottom: 40px; }
+    .site-footer {
+        padding: 0 20px;  /* match body sides so header rule and footer rule are the same width */
+    }
+    .site-header { margin-bottom: 36px; }
     .wordmark {
         font-size: 14px;
         letter-spacing: 0.4em;
     }
+    .page-heading {
+        font-size: 15px;
+        margin-bottom: 24px;
+    }
+    .toc-section { margin-bottom: 36px; }
+    .toc-section-label { margin-bottom: 8px; }
     .toc-title, .toc-num {
         font-size: 12px;
     }
+    .description { margin-bottom: 48px; }
     .description-body { font-size: 14px; }
-    .preorder { margin: 40px 0 64px; }
-    .forthcoming-label { margin-top: 40px; }
+    .description-body p { margin-bottom: 18px; }
+    .preorder { margin: 32px 0 56px; }
 }
