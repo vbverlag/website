@@ -154,10 +154,11 @@ ol, ul {
 /* ── PAGE HEADING (sub-pages) ── */
 .page-heading {
     font-family: 'Digital', monospace;
-    font-size: 16px;
+    font-size: 10px;
     font-weight: normal;
-    letter-spacing: 0.04em;
-    color: var(--ink);
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--muted);
     margin-bottom: 32px;
 }
 
@@ -359,7 +360,6 @@ textarea.form-field {
         letter-spacing: 0.4em;
     }
     .page-heading {
-        font-size: 15px;
         margin-bottom: 24px;
     }
     .toc-section { margin-bottom: 36px; }
