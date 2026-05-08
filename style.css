@@ -117,13 +117,16 @@ ol, ul {
     border-bottom-color: var(--red);
 }
 
-/* Muted variant for forthcoming */
+/* Muted variant — applied to a whole list (.toc-muted) or a single row (li.muted) */
 .toc-muted .toc-title,
-.toc-muted .toc-num {
+.toc li.muted .toc-title,
+.toc-muted .toc-num,
+.toc li.muted .toc-num {
     color: var(--muted);
 }
 
-.toc-muted .toc-fill {
+.toc-muted .toc-fill,
+.toc li.muted .toc-fill {
     border-bottom-color: var(--muted);
     opacity: 0.6;
 }
