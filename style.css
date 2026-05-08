@@ -33,7 +33,7 @@ body {
     line-height: 1.5;
     max-width: 720px;
     margin: 0 auto;
-    padding: 40px 32px 80px;
+    padding: 120px 32px 80px;  /* top clears the fixed header, bottom clears the fixed footer */
 }
 
 a {
@@ -45,9 +45,17 @@ ol, ul {
     list-style: none;
 }
 
-/* ── HEADER ── */
+/* ── HEADER (fixed, body-shaped to mirror the footer) ── */
 .site-header {
-    margin-bottom: 50px;
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 720px;
+    background: var(--bg);
+    padding: 32px 32px 0;
+    z-index: 10;
     text-align: center;
 }
 
@@ -351,12 +359,14 @@ textarea.form-field {
 /* ── RESPONSIVE ── */
 @media (max-width: 600px) {
     body {
-        padding: 24px 20px 80px;
+        padding: 88px 20px 80px;  /* top clears fixed header, bottom clears fixed footer */
+    }
+    .site-header {
+        padding: 20px 20px 0;
     }
     .site-footer {
         padding: 0 20px;  /* match body sides so header rule and footer rule are the same width */
     }
-    .site-header { margin-bottom: 36px; }
     .wordmark {
         font-size: 14px;
         letter-spacing: 0.4em;
