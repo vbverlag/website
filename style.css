@@ -117,15 +117,14 @@ ol, ul {
     border-bottom-color: var(--red);
 }
 
-/* Muted variant — applied to a whole list (.toc-muted) or a single row (li.muted) */
-.toc-muted .toc-title,
-.toc li.muted .toc-title,
-.toc-muted .toc-num,
-.toc li.muted .toc-num {
+/* Muted variant — applied to a whole list (.toc-muted) or a single row (li.muted).
+   Set on the parent so .toc-row's `color: inherit` cascades through to the spans. */
+.toc.toc-muted,
+.toc li.muted {
     color: var(--muted);
 }
 
-.toc-muted .toc-fill,
+.toc.toc-muted .toc-fill,
 .toc li.muted .toc-fill {
     border-bottom-color: var(--muted);
     opacity: 0.6;
